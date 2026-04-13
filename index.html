@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Website</title>
+</head>
+
+<body>
+
+<h2>Buy Service</h2>
+
+<input id="user" placeholder="Your Name"><br><br>
+
+<select id="product">
+<option>Python Course</option>
+<option>Advanced Coding</option>
+</select>
+
+<br><br>
+<button onclick="buy()">Buy Now</button>
+
+<script>
+function buy(){
+fetch("/order",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+user:document.getElementById("user").value,
+product:document.getElementById("product").value,
+amount:100
+})
+})
+.then(res=>res.json())
+.then(()=>{
+alert("Order placed ✅");
+});
+}
+</script>
+
+</body>
+</html>
